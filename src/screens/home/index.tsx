@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { FlatList, Pressable, Text, View } from "react-native";
+import { ExtendedFilters } from "../../components/extendedFilters";
 import { PriceFilter } from "../../components/priceFilter";
 import { SortDropdown, SortOption } from "../../components/sortDropdown";
 import { TravelCard } from "../../components/travelCard";
 import { items } from "../../data/items";
+import { Climate, Season } from "../../types/item";
 import { styles } from "./home.styles";
 
 export function Home() {
@@ -12,6 +14,8 @@ export function Home() {
   const [priceTo, setPriceTo] = useState("");
   const [isPriceOpen, setIsPriceOpen] = useState(false);
   const [isSortOpen, setIsSortOpen] = useState(false);
+  const [selectedClimates, setSelectedClimates] = useState<Climate[]>([]);
+  const [selectedSeasons, setSelectedSeasons] = useState<Season[]>([]);
 
   const isAnyOpen = isPriceOpen || isSortOpen;
 
@@ -23,6 +27,22 @@ export function Home() {
   function toggleSort() {
     setIsSortOpen((prev) => !prev);
     setIsPriceOpen(false);
+  }
+
+  function toggleClimate(climate: Climate) {
+    setSelectedClimates((prev) =>
+      prev.includes(climate)
+        ? prev.filter((c) => c !== climate)
+        : [...prev, climate],
+    );
+  }
+
+  function toggleSeason(season: Season) {
+    setSelectedSeasons((prev) =>
+      prev.includes(season)
+        ? prev.filter((s) => s !== season)
+        : [...prev, season],
+    );
   }
 
   const sortedItems =
@@ -39,6 +59,13 @@ export function Home() {
     const to = Number(priceTo);
     if (priceFrom && item.price < from) return false;
     if (priceTo && item.price > to) return false;
+    if (selectedClimates.length > 0 && !selectedClimates.includes(item.climate))
+      return false;
+    if (
+      selectedSeasons.length > 0 &&
+      !item.bestSeason.some((s) => selectedSeasons.includes(s))
+    )
+      return false;
     return true;
   });
 
@@ -84,6 +111,13 @@ export function Home() {
             <TravelCard item={item} />
           </View>
         )}
+      />
+
+      <ExtendedFilters
+        selectedClimates={selectedClimates}
+        selectedSeasons={selectedSeasons}
+        onClimateToggle={toggleClimate}
+        onSeasonToggle={toggleSeason}
       />
     </View>
   );

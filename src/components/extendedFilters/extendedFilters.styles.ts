@@ -1,0 +1,88 @@
+import { StyleSheet } from "react-native";
+
+export const styles = StyleSheet.create({
+  badge: {
+    alignItems: "center",
+    backgroundColor: "#e63946",
+    borderRadius: 9,
+    height: 18,
+    justifyContent: "center",
+    minWidth: 18,
+    position: "absolute",
+    right: -4,
+    top: -4,
+  },
+  badgeText: {
+    color: "#fff",
+    fontSize: 11,
+    fontWeight: "600",
+  },
+  button: {
+    alignItems: "center",
+    backgroundColor: "#2a9d8f",
+    borderRadius: 12,
+    bottom: 28,
+    elevation: 20,
+    height: 52,
+    justifyContent: "center",
+    position: "absolute",
+    right: 20,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.2,
+    shadowRadius: 6,
+    width: 52,
+    zIndex: 20,
+  },
+  buttonIcon: {
+    color: "#fff",
+    fontSize: 22,
+  },
+  chip: {
+    backgroundColor: "#f0f0f0",
+    borderRadius: 20,
+    marginBottom: 8,
+    marginRight: 8,
+    paddingHorizontal: 14,
+    paddingVertical: 7,
+  },
+  chipSelected: {
+    backgroundColor: "#2a9d8f",
+  },
+  chipText: {
+    color: "#555",
+    fontSize: 13,
+    textTransform: "capitalize",
+  },
+  chipTextSelected: {
+    color: "#fff",
+  },
+  modalContent: {
+    backgroundColor: "#fff",
+    borderTopLeftRadius: 16,
+    borderTopRightRadius: 16,
+    bottom: 0,
+    left: 0,
+    maxHeight: "70%",
+    padding: 24,
+    position: "absolute",
+    right: 0,
+  },
+  modalOverlay: {
+    backgroundColor: "rgba(0,0,0,0.4)",
+    flex: 1,
+    justifyContent: "flex-end",
+  },
+  optionRow: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    marginBottom: 8,
+  },
+  sectionLabel: {
+    color: "#444",
+    fontSize: 15,
+    fontWeight: "600",
+    marginBottom: 10,
+    marginTop: 4,
+  },
+});
