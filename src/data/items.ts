@@ -14,7 +14,8 @@ export const items: TravelItem[] = [
     difficulty: "easy",
     bestSeason: ["spring", "summer", "autumn"],
     activities: ["surfing", "hiking", "temple tours", "snorkeling"],
-    description: "A tropical paradise with stunning temples, rice terraces, and beaches.",
+    description:
+      "A tropical paradise with stunning temples, rice terraces, and beaches.",
   },
   {
     id: 2,
@@ -29,7 +30,8 @@ export const items: TravelItem[] = [
     difficulty: "challenging",
     bestSeason: ["spring", "summer"],
     activities: ["trekking", "rock climbing", "wildlife watching", "kayaking"],
-    description: "Dramatic landscapes of glaciers, mountains, and vast wilderness.",
+    description:
+      "Dramatic landscapes of glaciers, mountains, and vast wilderness.",
   },
   {
     id: 3,
@@ -44,7 +46,8 @@ export const items: TravelItem[] = [
     difficulty: "easy",
     bestSeason: ["spring", "summer", "autumn"],
     activities: ["sailing", "wine tasting", "sightseeing", "swimming"],
-    description: "Iconic whitewashed villages perched on volcanic cliffs above the Aegean Sea.",
+    description:
+      "Iconic whitewashed villages perched on volcanic cliffs above the Aegean Sea.",
   },
   {
     id: 4,
@@ -59,7 +62,8 @@ export const items: TravelItem[] = [
     difficulty: "moderate",
     bestSeason: ["autumn", "winter", "spring"],
     activities: ["camel trekking", "stargazing", "dune surfing", "camping"],
-    description: "Endless golden dunes, starlit skies, and ancient Berber culture.",
+    description:
+      "Endless golden dunes, starlit skies, and ancient Berber culture.",
   },
   {
     id: 5,
@@ -74,7 +78,8 @@ export const items: TravelItem[] = [
     difficulty: "easy",
     bestSeason: ["spring", "autumn"],
     activities: ["temple visits", "tea ceremony", "geisha district", "cycling"],
-    description: "Japan's cultural heart, with hundreds of shrines, gardens, and geisha districts.",
+    description:
+      "Japan's cultural heart, with hundreds of shrines, gardens, and geisha districts.",
   },
   {
     id: 6,
@@ -88,8 +93,14 @@ export const items: TravelItem[] = [
     rating: 5.0,
     difficulty: "easy",
     bestSeason: ["winter", "spring"],
-    activities: ["diving", "snorkeling", "overwater bungalow stay", "dolphin watching"],
-    description: "Luxury overwater bungalows surrounded by crystal-clear turquoise lagoons.",
+    activities: [
+      "diving",
+      "snorkeling",
+      "overwater bungalow stay",
+      "dolphin watching",
+    ],
+    description:
+      "Luxury overwater bungalows surrounded by crystal-clear turquoise lagoons.",
   },
   {
     id: 7,
@@ -104,7 +115,8 @@ export const items: TravelItem[] = [
     difficulty: "moderate",
     bestSeason: ["summer", "autumn"],
     activities: ["fjord cruising", "hiking", "northern lights", "kayaking"],
-    description: "Majestic fjords carved by glaciers, with waterfalls and charming fishing villages.",
+    description:
+      "Majestic fjords carved by glaciers, with waterfalls and charming fishing villages.",
   },
   {
     id: 8,
@@ -118,8 +130,14 @@ export const items: TravelItem[] = [
     rating: 4.7,
     difficulty: "challenging",
     bestSeason: ["summer", "autumn"],
-    activities: ["jungle trekking", "wildlife spotting", "river cruising", "piranha fishing"],
-    description: "The world's largest tropical rainforest, teeming with exotic wildlife and biodiversity.",
+    activities: [
+      "jungle trekking",
+      "wildlife spotting",
+      "river cruising",
+      "piranha fishing",
+    ],
+    description:
+      "The world's largest tropical rainforest, teeming with exotic wildlife and biodiversity.",
   },
   {
     id: 9,
@@ -134,7 +152,8 @@ export const items: TravelItem[] = [
     difficulty: "easy",
     bestSeason: ["spring", "summer", "autumn"],
     activities: ["museums", "broadway shows", "food tours", "sightseeing"],
-    description: "The city that never sleeps — iconic skyline, world-class culture, and endless energy.",
+    description:
+      "The city that never sleeps — iconic skyline, world-class culture, and endless energy.",
   },
   {
     id: 10,
@@ -149,7 +168,8 @@ export const items: TravelItem[] = [
     difficulty: "moderate",
     bestSeason: ["spring", "summer", "autumn"],
     activities: ["boat tours", "hiking", "swimming", "local cuisine"],
-    description: "Stunning cliffside villages, turquoise waters, and world-famous Italian cuisine.",
+    description:
+      "Stunning cliffside villages, turquoise waters, and world-famous Italian cuisine.",
   },
   {
     id: 11,
@@ -163,8 +183,14 @@ export const items: TravelItem[] = [
     rating: 4.9,
     difficulty: "challenging",
     bestSeason: ["spring", "summer"],
-    activities: ["Inca trail hike", "archaeology", "mountain biking", "zip-lining"],
-    description: "Ancient Incan citadel set high in the Andes mountains, a wonder of the world.",
+    activities: [
+      "Inca trail hike",
+      "archaeology",
+      "mountain biking",
+      "zip-lining",
+    ],
+    description:
+      "Ancient Incan citadel set high in the Andes mountains, a wonder of the world.",
   },
   {
     id: 12,
@@ -178,7 +204,13 @@ export const items: TravelItem[] = [
     rating: 4.9,
     difficulty: "moderate",
     bestSeason: ["summer", "autumn"],
-    activities: ["safari", "wildlife photography", "hot air balloon", "Maasai village visit"],
-    description: "Home to the Great Migration — millions of wildebeest and predators on the open plains.",
+    activities: [
+      "safari",
+      "wildlife photography",
+      "hot air balloon",
+      "Maasai village visit",
+    ],
+    description:
+      "Home to the Great Migration — millions of wildebeest and predators on the open plains.",
   },
 ];
