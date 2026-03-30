@@ -4,6 +4,13 @@ export const styles = StyleSheet.create({
   cardWrapper: {
     marginBottom: 12,
   },
+  controls: {
+    alignItems: "flex-start",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 8,
+    overflow: "visible",
+  },
   header: {
     marginBottom: 16,
     overflow: "visible",

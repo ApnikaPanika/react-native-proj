@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   button: {
     alignItems: "center",
-    alignSelf: "flex-end",
+    alignSelf: "flex-start",
     backgroundColor: "#f0f0f0",
     borderColor: "transparent",
     borderRadius: 8,
@@ -16,48 +16,61 @@ export const styles = StyleSheet.create({
   buttonActive: {
     backgroundColor: "#e8f4f1",
     borderColor: "#2a9d8f",
-    borderWidth: 1,
   },
   buttonLabel: {
     color: "#444",
     fontSize: 14,
   },
-  buttonWrapper: {
-    alignItems: "flex-end",
-  },
   chevron: {
     color: "#555",
     fontSize: 12,
   },
-  container: {},
-  dropdown: {
+  clearButton: {
+    alignSelf: "flex-end",
+    marginTop: 10,
+  },
+  clearText: {
+    color: "#888",
+    fontSize: 13,
+  },
+  container: {
+    position: "relative",
+  },
+  input: {
+    borderColor: "#e0e0e0",
+    borderRadius: 6,
+    borderWidth: 1,
+    flex: 1,
+    fontSize: 14,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+  },
+  inputLabel: {
+    color: "#888",
+    fontSize: 12,
+    marginBottom: 4,
+  },
+  inputRow: {
+    flexDirection: "row",
+    gap: 8,
+  },
+  inputWrapper: {
+    flex: 1,
+  },
+  panel: {
     backgroundColor: "#fff",
     borderColor: "#e0e0e0",
     borderRadius: 8,
     borderWidth: 1,
     elevation: 4,
+    left: 0,
+    padding: 12,
     position: "absolute",
-    right: 0,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.12,
     shadowRadius: 6,
     top: 40,
-    width: 200,
-  },
-  option: {
-    paddingHorizontal: 14,
-    paddingVertical: 12,
-  },
-  optionActive: {
-    backgroundColor: "#e8f4f1",
-  },
-  optionText: {
-    color: "#444",
-    fontSize: 14,
-  },
-  optionTextActive: {
-    color: "#2a9d8f",
-    fontWeight: "600",
+    width: 240,
   },
 });
