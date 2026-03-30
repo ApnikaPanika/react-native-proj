@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FlatList, Pressable, Text, View } from "react-native";
 import { ExtendedFilters } from "../../components/extendedFilters";
 import { PriceFilter } from "../../components/priceFilter";
+import { SearchInput } from "../../components/searchInput";
 import { SortDropdown, SortOption } from "../../components/sortDropdown";
 import { TravelCard } from "../../components/travelCard";
 import { items } from "../../data/items";
@@ -10,6 +11,7 @@ import { styles } from "./home.styles";
 
 export function Home() {
   const [sortValue, setSortValue] = useState<SortOption>("none");
+  const [searchQuery, setSearchQuery] = useState("");
   const [priceFrom, setPriceFrom] = useState("");
   const [priceTo, setPriceTo] = useState("");
   const [isPriceOpen, setIsPriceOpen] = useState(false);
@@ -68,6 +70,12 @@ export function Home() {
     const to = Number(priceTo);
     if (priceFrom && item.price < from) return false;
     if (priceTo && item.price > to) return false;
+    if (
+      searchQuery.trim() &&
+      !item.destination.toLowerCase().includes(searchQuery.toLowerCase()) &&
+      !item.country.toLowerCase().includes(searchQuery.toLowerCase())
+    )
+      return false;
     if (selectedClimates.length > 0 && !selectedClimates.includes(item.climate))
       return false;
     if (
@@ -88,6 +96,7 @@ export function Home() {
       <View style={styles.header}>
         <Text style={styles.title}>Explore Destinations</Text>
         <Text style={styles.subtitle}>Find your next adventure</Text>
+        <SearchInput value={searchQuery} onChangeText={setSearchQuery} />
         <View style={styles.controls}>
           <PriceFilter
             from={priceFrom}
