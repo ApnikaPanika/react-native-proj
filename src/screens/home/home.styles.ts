@@ -6,11 +6,16 @@ export const styles = StyleSheet.create({
   },
   header: {
     marginBottom: 16,
+    overflow: "visible",
     paddingHorizontal: 6,
+    paddingTop: 12,
+    zIndex: 10,
   },
   list: {
     paddingHorizontal: 6,
-    paddingTop: 12,
+  },
+  screen: {
+    flex: 1,
   },
   subtitle: {
     color: "#888",
