@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Pressable, Text, View } from "react-native";
 import { styles } from "./sortDropdown.styles";
 
@@ -12,17 +11,17 @@ const OPTIONS: { value: SortOption; label: string }[] = [
 
 type Props = {
   value: SortOption;
+  isOpen: boolean;
+  onToggle: () => void;
   onChange: (value: SortOption) => void;
 };
 
-export function SortDropdown({ value, onChange }: Props) {
-  const [isOpen, setIsOpen] = useState(false);
-
+export function SortDropdown({ value, isOpen, onToggle, onChange }: Props) {
   const currentLabel = OPTIONS.find((o) => o.value === value)?.label ?? "";
 
   function handleSelect(option: SortOption) {
     onChange(option);
-    setIsOpen(false);
+    onToggle();
   }
 
   return (
@@ -30,7 +29,7 @@ export function SortDropdown({ value, onChange }: Props) {
       <View style={styles.buttonWrapper}>
         <Pressable
           style={[styles.button, isOpen && styles.buttonActive]}
-          onPress={() => setIsOpen((prev) => !prev)}
+          onPress={onToggle}
         >
           <Text style={styles.buttonLabel}>{currentLabel}</Text>
           <Text style={styles.chevron}>{isOpen ? "▲" : "▼"}</Text>

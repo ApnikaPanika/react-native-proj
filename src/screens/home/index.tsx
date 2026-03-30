@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
+import { FlatList, Pressable, Text, View } from "react-native";
 import { PriceFilter } from "../../components/priceFilter";
 import { SortDropdown, SortOption } from "../../components/sortDropdown";
 import { TravelCard } from "../../components/travelCard";
@@ -11,6 +11,19 @@ export function Home() {
   const [priceFrom, setPriceFrom] = useState("");
   const [priceTo, setPriceTo] = useState("");
   const [isPriceOpen, setIsPriceOpen] = useState(false);
+  const [isSortOpen, setIsSortOpen] = useState(false);
+
+  const isAnyOpen = isPriceOpen || isSortOpen;
+
+  function togglePrice() {
+    setIsPriceOpen((prev) => !prev);
+    setIsSortOpen(false);
+  }
+
+  function toggleSort() {
+    setIsSortOpen((prev) => !prev);
+    setIsPriceOpen(false);
+  }
 
   const sortedItems =
     sortValue === "none"
@@ -39,18 +52,26 @@ export function Home() {
             from={priceFrom}
             to={priceTo}
             isOpen={isPriceOpen}
-            onToggle={() => setIsPriceOpen((prev) => !prev)}
+            onToggle={togglePrice}
             onFromChange={setPriceFrom}
             onToChange={setPriceTo}
           />
-          <SortDropdown value={sortValue} onChange={setSortValue} />
+          <SortDropdown
+            value={sortValue}
+            isOpen={isSortOpen}
+            onToggle={toggleSort}
+            onChange={setSortValue}
+          />
         </View>
       </View>
 
-      {isPriceOpen && (
+      {isAnyOpen && (
         <Pressable
-          style={StyleSheet.absoluteFillObject}
-          onPress={() => setIsPriceOpen(false)}
+          style={styles.backdrop}
+          onPress={() => {
+            setIsPriceOpen(false);
+            setIsSortOpen(false);
+          }}
         />
       )}
 
