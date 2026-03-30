@@ -1,9 +1,16 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 16,
+  cardWrapper: {
+    marginBottom: 12,
+  },
+  header: {
+    marginBottom: 16,
+    paddingHorizontal: 6,
+  },
+  list: {
+    paddingHorizontal: 6,
+    paddingTop: 12,
   },
   subtitle: {
     color: "#888",

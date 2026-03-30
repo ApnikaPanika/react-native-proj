@@ -16,6 +16,17 @@ export function TravelCard({ item }: Props) {
       <Text style={styles.location}>
         {item.country} · {item.continent}
       </Text>
+      <View style={styles.tags}>
+        <Text style={styles.tag}>{item.category}</Text>
+        <Text style={styles.tag}>{item.climate}</Text>
+      </View>
+      <View style={styles.seasons}>
+        {item.bestSeason.map((season) => (
+          <Text key={season} style={styles.seasonTag}>
+            {season}
+          </Text>
+        ))}
+      </View>
       <Text style={styles.description} numberOfLines={2}>
         {item.description}
       </Text>
