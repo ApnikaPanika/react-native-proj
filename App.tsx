@@ -1,12 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
-import { Text, View } from 'react-native';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { styles } from './App.styles';
+import { Home } from './src/screens/home';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaProvider>
+      <SafeAreaView style={styles.container}>
+        <StatusBar style="auto" />
+        <Home />
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }

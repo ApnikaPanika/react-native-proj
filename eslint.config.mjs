@@ -20,7 +20,10 @@ export default defineConfig([
   pluginReact.configs.flat["jsx-runtime"],
   {
     plugins: { "react-native": pluginReactNative },
-    rules: pluginReactNative.configs.all.rules,
+    rules: {
+      ...pluginReactNative.configs.all.rules,
+      "react-native/no-color-literals": "off",
+    },
   },
   {
     settings: {
