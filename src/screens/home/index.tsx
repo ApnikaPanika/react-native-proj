@@ -5,7 +5,7 @@ import { PriceFilter } from "../../components/priceFilter";
 import { SortDropdown, SortOption } from "../../components/sortDropdown";
 import { TravelCard } from "../../components/travelCard";
 import { items } from "../../data/items";
-import { Climate, Season } from "../../types/item";
+import { Climate, Continent, Season } from "../../types/item";
 import { styles } from "./home.styles";
 
 export function Home() {
@@ -16,6 +16,7 @@ export function Home() {
   const [isSortOpen, setIsSortOpen] = useState(false);
   const [selectedClimates, setSelectedClimates] = useState<Climate[]>([]);
   const [selectedSeasons, setSelectedSeasons] = useState<Season[]>([]);
+  const [selectedContinents, setSelectedContinents] = useState<Continent[]>([]);
 
   const isAnyOpen = isPriceOpen || isSortOpen;
 
@@ -45,6 +46,14 @@ export function Home() {
     );
   }
 
+  function toggleContinent(continent: Continent) {
+    setSelectedContinents((prev) =>
+      prev.includes(continent)
+        ? prev.filter((c) => c !== continent)
+        : [...prev, continent],
+    );
+  }
+
   const sortedItems =
     sortValue === "none"
       ? items
@@ -64,6 +73,11 @@ export function Home() {
     if (
       selectedSeasons.length > 0 &&
       !item.bestSeason.some((s) => selectedSeasons.includes(s))
+    )
+      return false;
+    if (
+      selectedContinents.length > 0 &&
+      !selectedContinents.includes(item.continent)
     )
       return false;
     return true;
@@ -116,8 +130,10 @@ export function Home() {
       <ExtendedFilters
         selectedClimates={selectedClimates}
         selectedSeasons={selectedSeasons}
+        selectedContinents={selectedContinents}
         onClimateToggle={toggleClimate}
         onSeasonToggle={toggleSeason}
+        onContinentToggle={toggleContinent}
       />
     </View>
   );

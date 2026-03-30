@@ -7,11 +7,18 @@ export type Climate =
 
 export type Season = "spring" | "summer" | "autumn" | "winter";
 
+export type Continent =
+  | "Africa"
+  | "Asia"
+  | "Europe"
+  | "North America"
+  | "South America";
+
 export type TravelItem = {
   id: number;
   destination: string;
   country: string;
-  continent: string;
+  continent: Continent;
   category: "beach" | "mountain" | "city" | "desert" | "forest" | "island";
   climate: Climate;
   duration: number; // days

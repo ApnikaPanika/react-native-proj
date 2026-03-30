@@ -1,4 +1,4 @@
-import { Climate, Season } from "../types/item";
+import { Climate, Continent, Season } from "../types/item";
 
 export const Climates: Climate[] = [
   "tropical",
@@ -9,3 +9,11 @@ export const Climates: Climate[] = [
 ];
 
 export const Seasons: Season[] = ["spring", "summer", "autumn", "winter"];
+
+export const Continents: Continent[] = [
+  "Africa",
+  "Asia",
+  "Europe",
+  "North America",
+  "South America",
+];
