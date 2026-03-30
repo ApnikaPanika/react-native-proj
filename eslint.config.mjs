@@ -4,6 +4,7 @@ import pluginReact from "eslint-plugin-react";
 import pluginReactNative from "eslint-plugin-react-native";
 import { defineConfig } from "eslint/config";
 
+// eslint-disable-next-line no-restricted-syntax
 export default defineConfig([
   { ignores: ["node_modules/", "dist/", "build/", "ios/", "android/", ".expo/", "**/*.log"] },
   {
@@ -23,6 +24,10 @@ export default defineConfig([
     rules: {
       ...pluginReactNative.configs.all.rules,
       "react-native/no-color-literals": "off",
+      "no-restricted-syntax": [
+        "error",
+        { selector: "ExportDefaultDeclaration", message: "Use named exports instead of default exports." },
+      ],
     },
   },
   {
