@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { FlatList, Pressable, Text, View } from "react-native";
 import { ExtendedFilters } from "../../components/extendedFilters";
 import { PriceFilter } from "../../components/priceFilter";
@@ -22,74 +22,81 @@ export function Home() {
 
   const isAnyOpen = isPriceOpen || isSortOpen;
 
-  function togglePrice() {
+  const togglePrice = useCallback(() => {
     setIsPriceOpen((prev) => !prev);
     setIsSortOpen(false);
-  }
+  }, []);
 
-  function toggleSort() {
+  const toggleSort = useCallback(() => {
     setIsSortOpen((prev) => !prev);
     setIsPriceOpen(false);
-  }
+  }, []);
 
-  function toggleClimate(climate: Climate) {
+  const toggleClimate = useCallback((climate: Climate) => {
     setSelectedClimates((prev) =>
       prev.includes(climate)
         ? prev.filter((c) => c !== climate)
         : [...prev, climate],
     );
-  }
+  }, []);
 
-  function toggleSeason(season: Season) {
+  const toggleSeason = useCallback((season: Season) => {
     setSelectedSeasons((prev) =>
       prev.includes(season)
         ? prev.filter((s) => s !== season)
         : [...prev, season],
     );
-  }
+  }, []);
 
-  function toggleContinent(continent: Continent) {
+  const toggleContinent = useCallback((continent: Continent) => {
     setSelectedContinents((prev) =>
       prev.includes(continent)
         ? prev.filter((c) => c !== continent)
         : [...prev, continent],
     );
-  }
+  }, []);
 
-  const sortedItems =
-    sortValue === "none"
-      ? items
-      : [...items].sort((a, b) =>
-          sortValue === "rating_desc"
-            ? b.rating - a.rating
-            : a.rating - b.rating,
-        );
+  const sortedItems = useMemo(
+    () =>
+      sortValue === "none"
+        ? items
+        : [...items].sort((a, b) =>
+            sortValue === "rating_desc"
+              ? b.rating - a.rating
+              : a.rating - b.rating,
+          ),
+    [sortValue],
+  );
 
-  const displayItems = sortedItems.filter((item) => {
-    const from = Number(priceFrom);
-    const to = Number(priceTo);
-    if (priceFrom && item.price < from) return false;
-    if (priceTo && item.price > to) return false;
-    if (
-      searchQuery.trim() &&
-      !item.destination.toLowerCase().includes(searchQuery.toLowerCase()) &&
-      !item.country.toLowerCase().includes(searchQuery.toLowerCase())
-    )
-      return false;
-    if (selectedClimates.length > 0 && !selectedClimates.includes(item.climate))
-      return false;
-    if (
-      selectedSeasons.length > 0 &&
-      !item.bestSeason.some((s) => selectedSeasons.includes(s))
-    )
-      return false;
-    if (
-      selectedContinents.length > 0 &&
-      !selectedContinents.includes(item.continent)
-    )
-      return false;
-    return true;
-  });
+  const displayItems = useMemo(
+    () =>
+      sortedItems.filter((item) => {
+        const from = Number(priceFrom);
+        const to = Number(priceTo);
+        if (priceFrom && item.price < from) return false;
+        if (priceTo && item.price > to) return false;
+        if (
+          searchQuery.trim() &&
+          !item.destination.toLowerCase().includes(searchQuery.toLowerCase()) &&
+          !item.country.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+          return false;
+        if (selectedClimates.length > 0 && !selectedClimates.includes(item.climate))
+          return false;
+        if (
+          selectedSeasons.length > 0 &&
+          !item.bestSeason.some((s) => selectedSeasons.includes(s))
+        )
+          return false;
+        if (
+          selectedContinents.length > 0 &&
+          !selectedContinents.includes(item.continent)
+        )
+          return false;
+        return true;
+      }),
+    [sortedItems, priceFrom, priceTo, searchQuery, selectedClimates, selectedSeasons, selectedContinents],
+  );
 
   return (
     <View style={styles.screen}>
