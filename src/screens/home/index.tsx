@@ -6,7 +6,7 @@ import { SearchInput } from "../../components/searchInput";
 import { SortDropdown, SortOption } from "../../components/sortDropdown";
 import { TravelCard } from "../../components/travelCard";
 import { items } from "../../data/items";
-import { Climate, Continent, Season } from "../../types/item";
+import { Climate, Continent, Season } from "../../data/filters";
 import { styles } from "./home.styles";
 
 export function Home() {

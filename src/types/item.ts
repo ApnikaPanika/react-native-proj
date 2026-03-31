@@ -1,18 +1,4 @@
-export type Climate =
-  | "tropical"
-  | "temperate"
-  | "arctic"
-  | "arid"
-  | "mediterranean";
-
-export type Season = "spring" | "summer" | "autumn" | "winter";
-
-export type Continent =
-  | "Africa"
-  | "Asia"
-  | "Europe"
-  | "North America"
-  | "South America";
+import type { Climate, Continent, Season } from "../data/filters";
 
 export type TravelItem = {
   id: number;

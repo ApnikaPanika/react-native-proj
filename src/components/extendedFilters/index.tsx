@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Modal, Pressable, ScrollView, Text, View } from "react-native";
-import { Climates, Continents, Seasons } from "../../data/filters";
-import { Climate, Continent, Season } from "../../types/item";
+import { Climate, Climates, Continent, Continents, Season, Seasons } from "../../data/filters";
 import { styles } from "./extendedFilters.styles";
 
 type Props = {
@@ -29,7 +28,7 @@ export function ExtendedFilters({
     selectedContinents.length;
 
   function renderChips<T extends string>(
-    options: T[],
+    options: readonly T[],
     selected: T[],
     onToggle: (val: T) => void,
   ) {
