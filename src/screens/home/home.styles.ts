@@ -29,6 +29,7 @@ export const styles = StyleSheet.create({
   },
   list: {
     paddingHorizontal: 6,
+    paddingTop: 8,
   },
   screen: {
     flex: 1,

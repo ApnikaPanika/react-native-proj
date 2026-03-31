@@ -1,5 +1,6 @@
 import { useCallback, useMemo, useState } from "react";
 import { FlatList, Pressable, Text, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ExtendedFilters } from "../../components/extendedFilters";
 import { PriceFilter } from "../../components/priceFilter";
 import { SearchInput } from "../../components/searchInput";
@@ -10,7 +11,10 @@ import { Climate, Continent, Season } from "../../data/filters";
 import { useDebounce } from "../../hooks/useDebounce";
 import { styles } from "./home.styles";
 
+const FILTER_BUTTON_CLEARANCE = 28 + 52 + 12; // bottom offset + button height + gap
+
 export function Home() {
+  const insets = useSafeAreaInsets();
   const [sortValue, setSortValue] = useState<SortOption>("none");
   const [searchQuery, setSearchQuery] = useState("");
   const [priceFrom, setPriceFrom] = useState("");
@@ -151,7 +155,10 @@ export function Home() {
       <FlatList
         data={displayItems}
         keyExtractor={(item) => String(item.id)}
-        contentContainerStyle={styles.list}
+        contentContainerStyle={[
+          styles.list,
+          { paddingBottom: insets.bottom + FILTER_BUTTON_CLEARANCE },
+        ]}
         renderItem={renderItem}
       />
 
