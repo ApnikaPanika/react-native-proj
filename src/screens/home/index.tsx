@@ -80,11 +80,18 @@ export function Home() {
         if (priceTo && item.price > to) return false;
         if (
           debouncedSearchQuery.trim() &&
-          !item.destination.toLowerCase().includes(debouncedSearchQuery.toLowerCase()) &&
-          !item.country.toLowerCase().includes(debouncedSearchQuery.toLowerCase())
+          !item.destination
+            .toLowerCase()
+            .includes(debouncedSearchQuery.toLowerCase()) &&
+          !item.country
+            .toLowerCase()
+            .includes(debouncedSearchQuery.toLowerCase())
         )
           return false;
-        if (selectedClimates.length > 0 && !selectedClimates.includes(item.climate))
+        if (
+          selectedClimates.length > 0 &&
+          !selectedClimates.includes(item.climate)
+        )
           return false;
         if (
           selectedSeasons.length > 0 &&
@@ -98,7 +105,15 @@ export function Home() {
           return false;
         return true;
       }),
-    [sortedItems, priceFrom, priceTo, debouncedSearchQuery, selectedClimates, selectedSeasons, selectedContinents],
+    [
+      sortedItems,
+      priceFrom,
+      priceTo,
+      debouncedSearchQuery,
+      selectedClimates,
+      selectedSeasons,
+      selectedContinents,
+    ],
   );
 
   const renderItem = useCallback(

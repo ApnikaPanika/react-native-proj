@@ -1,6 +1,13 @@
 import { useState } from "react";
 import { Modal, Pressable, ScrollView, Text, View } from "react-native";
-import { Climate, Climates, Continent, Continents, Season, Seasons } from "../../data/filters";
+import {
+  Climate,
+  Climates,
+  Continent,
+  Continents,
+  Season,
+  Seasons,
+} from "../../data/filters";
 import { styles } from "./extendedFilters.styles";
 
 type Props = {
