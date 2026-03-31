@@ -7,6 +7,7 @@ import { SortDropdown, SortOption } from "../../components/sortDropdown";
 import { TravelCard } from "../../components/travelCard";
 import { items } from "../../data/items";
 import { Climate, Continent, Season } from "../../data/filters";
+import { useDebounce } from "../../hooks/useDebounce";
 import { styles } from "./home.styles";
 
 export function Home() {
@@ -19,6 +20,8 @@ export function Home() {
   const [selectedClimates, setSelectedClimates] = useState<Climate[]>([]);
   const [selectedSeasons, setSelectedSeasons] = useState<Season[]>([]);
   const [selectedContinents, setSelectedContinents] = useState<Continent[]>([]);
+
+  const debouncedSearchQuery = useDebounce(searchQuery);
 
   const isAnyOpen = isPriceOpen || isSortOpen;
 
@@ -76,9 +79,9 @@ export function Home() {
         if (priceFrom && item.price < from) return false;
         if (priceTo && item.price > to) return false;
         if (
-          searchQuery.trim() &&
-          !item.destination.toLowerCase().includes(searchQuery.toLowerCase()) &&
-          !item.country.toLowerCase().includes(searchQuery.toLowerCase())
+          debouncedSearchQuery.trim() &&
+          !item.destination.toLowerCase().includes(debouncedSearchQuery.toLowerCase()) &&
+          !item.country.toLowerCase().includes(debouncedSearchQuery.toLowerCase())
         )
           return false;
         if (selectedClimates.length > 0 && !selectedClimates.includes(item.climate))
@@ -95,7 +98,16 @@ export function Home() {
           return false;
         return true;
       }),
-    [sortedItems, priceFrom, priceTo, searchQuery, selectedClimates, selectedSeasons, selectedContinents],
+    [sortedItems, priceFrom, priceTo, debouncedSearchQuery, selectedClimates, selectedSeasons, selectedContinents],
+  );
+
+  const renderItem = useCallback(
+    ({ item }: { item: (typeof displayItems)[0] }) => (
+      <View style={styles.cardWrapper}>
+        <TravelCard item={item} />
+      </View>
+    ),
+    [],
   );
 
   return (
@@ -136,11 +148,7 @@ export function Home() {
         data={displayItems}
         keyExtractor={(item) => String(item.id)}
         contentContainerStyle={styles.list}
-        renderItem={({ item }) => (
-          <View style={styles.cardWrapper}>
-            <TravelCard item={item} />
-          </View>
-        )}
+        renderItem={renderItem}
       />
 
       <ExtendedFilters
