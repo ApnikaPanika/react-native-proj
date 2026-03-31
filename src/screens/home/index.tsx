@@ -71,50 +71,39 @@ export function Home() {
     [sortValue],
   );
 
-  const displayItems = useMemo(
-    () =>
-      sortedItems.filter((item) => {
-        const from = Number(priceFrom);
-        const to = Number(priceTo);
-        if (priceFrom && item.price < from) return false;
-        if (priceTo && item.price > to) return false;
-        if (
-          debouncedSearchQuery.trim() &&
-          !item.destination
-            .toLowerCase()
-            .includes(debouncedSearchQuery.toLowerCase()) &&
-          !item.country
-            .toLowerCase()
-            .includes(debouncedSearchQuery.toLowerCase())
-        )
-          return false;
-        if (
-          selectedClimates.length > 0 &&
-          !selectedClimates.includes(item.climate)
-        )
-          return false;
-        if (
-          selectedSeasons.length > 0 &&
-          !item.bestSeason.some((s) => selectedSeasons.includes(s))
-        )
-          return false;
-        if (
-          selectedContinents.length > 0 &&
-          !selectedContinents.includes(item.continent)
-        )
-          return false;
-        return true;
-      }),
-    [
-      sortedItems,
-      priceFrom,
-      priceTo,
-      debouncedSearchQuery,
-      selectedClimates,
-      selectedSeasons,
-      selectedContinents,
-    ],
-  );
+  const displayItems = useMemo(() => {
+    const from = Number(priceFrom);
+    const to = Number(priceTo);
+    const lowerQuery = debouncedSearchQuery.toLowerCase().trim();
+    const climateSet = new Set(selectedClimates);
+    const seasonSet = new Set(selectedSeasons);
+    const continentSet = new Set(selectedContinents);
+
+    return sortedItems.filter((item) => {
+      if (priceFrom && item.price < from) return false;
+      if (priceTo && item.price > to) return false;
+      if (
+        lowerQuery &&
+        !item.destination.toLowerCase().includes(lowerQuery) &&
+        !item.country.toLowerCase().includes(lowerQuery)
+      )
+        return false;
+      if (climateSet.size > 0 && !climateSet.has(item.climate)) return false;
+      if (seasonSet.size > 0 && !item.bestSeason.some((s) => seasonSet.has(s)))
+        return false;
+      if (continentSet.size > 0 && !continentSet.has(item.continent))
+        return false;
+      return true;
+    });
+  }, [
+    sortedItems,
+    priceFrom,
+    priceTo,
+    debouncedSearchQuery,
+    selectedClimates,
+    selectedSeasons,
+    selectedContinents,
+  ]);
 
   const renderItem = useCallback(
     ({ item }: { item: (typeof displayItems)[0] }) => (
